@@ -1,0 +1,40 @@
+/* I_page.css */
+
+.result-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .result-container .result-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .coupang-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .coupang-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4285f4; /* Change the background color as needed */
+    color: #ffffff; /* Change the text color as needed */
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .coupang-link:hover {
+    background-color: #3367d6; /* Change the hover background color as needed */
+  }
+  
+  .product-image {
+    width: 100%; /* Adjust the width of the product image as needed */
+    height: auto;
+    max-height: 300px; /* Set a maximum height for the product image */
+  }
