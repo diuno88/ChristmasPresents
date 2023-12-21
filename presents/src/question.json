@@ -1,0 +1,44 @@
+[
+	{
+		"id": 1,
+		"question": "E 와 I를 구분하는 질문1번 입니다 ",
+		"answers": [
+			{
+				"type": "E",
+				"content": "E 입니까?E 입니까?E 입니까?E 입니까?"
+			},
+			{
+				"type": "I",
+				"content": "I 입니까?I 입니까?I 입니까?I 입니까?"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"question": "E 와 I를 구분하는 질문2번 입니다 ",
+		"answers": [
+			{
+				"type": "E",
+				"content": "E 입니까?E 입니까?E 입니까?E 입니까?"
+			},
+			{
+				"type": "I",
+				"content": "I 입니까?I 입니까?I 입니까?I 입니까?"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"question": "E 와 I를 구분하는 질문3번 입니다 ",
+		"answers": [
+			{
+				"type": "E",
+				"content": "E 입니까?E 입니까?E 입니까?E 입니까?"
+			},
+			{
+				"type": "I",
+				"content": "I 입니까?I 입니까?I 입니까?I 입니까?"
+			}
+		]
+	}
+]
