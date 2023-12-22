@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  useEffect} from 'react';
 import './App.css'; //드로잉 css가져오기 
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
@@ -25,6 +25,7 @@ const MBTIQuiz = () => {
   const [answers, setAnswers] = useState([]); // answers배열 선언, setAnswers라는 setter 메서드로 관리 (java의 setter)
   const [currentQuestion, setCurrentQuestion] = useState(0); // currentQuestion배열 선언, setCurrentQuestion라는 메서르르 실행 
   const [bottom_quest_cnt, setAddCnt] = useState(0);
+
   const [fadeIn, setFadeIn] = useState(true);
   const navigate = useNavigate();
   
@@ -33,13 +34,14 @@ const MBTIQuiz = () => {
   const handleAnswer = (answer) => {
     setFadeIn(false);
     setTimeout(() => {
-      setAnswers([...answers, MessageJson[currentQuestion].answers[answer].type]); //사용자가 선택한 값을 가지고 있는 곳
+      setAnswers([...answers, MessageJson[currentQuestion-1].answers[answer].type]); //사용자가 선택한 값을 가지고 있는 곳
       setCurrentQuestion(currentQuestion + 1);
       setAddCnt( bottom_quest_cnt+1);
       setFadeIn(true);
     }, 50); // 1000밀리초(1초) 후에 결과 표시
     
   };
+
 
   //모든 질문지를 응답했을땐 mbti를 계산
   const calculateMBTI = () => {
@@ -56,6 +58,7 @@ const MBTIQuiz = () => {
     let countJ = 0;
     let countP = 0;
     //배열 for문처리
+    console.log(calculateMBTI);
     answers.forEach(answer => {
       //정규식
       countI = (answer.match(/I/g) || []).length;
@@ -88,42 +91,44 @@ const MBTIQuiz = () => {
         break;
     }
 
-
     return result;
-  };
+  };  
+  return (   
 
-  /* 결과값에 따른 페이지 route 지정 함수입니다 
-  const switchingPage=(resultMbti) =>{
-    switch(resultMbti){
-      case "E":  <Route path="/" element={<E_page />} /> 
-        break;
-      case "I":  <Route path="/" element={<I_page />} /> 
-        break;
-      default : <Route path="/" element={<Default_page />} />
-        break;
-    }
-  }*/
-  
-  return (
-    <div className={`quiz-container ${fadeIn ? 'fade-in-out' : 'fade-in-out-hidden'}`}>
-      {currentQuestion < MessageJson.length ? ( //마지막질문까지 for문 처리 
+    <div className='quiz-container'>
+      {
+      currentQuestion===0?
         <div className="question-container">
-          
-          <h1> 신중히 선택하세요 </h1>
-          <h2 >{MessageJson[currentQuestion].question}</h2>
+          <div className='container_title'>  <br/>여친선물고르기</div>
+          <div className="messageCnt">
+            <h2> 총 {MessageJson.length}가지 질문 선택</h2>
+          </div>
           <div>
-            <button class="btn-3d red" onClick={() => handleAnswer(0)}>{MessageJson[currentQuestion].answers[0].content}</button>
+              <button className="btn-3d cyan"  onClick={() => setCurrentQuestion(1)} >시작하기</button>
+          </div>
+          <div>
+            그녀의 MBTI 성향을파악해서 추천드립니다
+          </div>
+        </div>
+      :currentQuestion <= MessageJson.length ? 
+      ( //마지막질문까지 for문 처리 
+        <div className={`question-container ${fadeIn ? 'fade-in-out' : 'fade-in-out-hidden'}`}>
+          <div className='question'>{MessageJson[currentQuestion-1].question}</div>
+          <div>
+            <button className="btn-3d red" onClick={() => handleAnswer(0)}>{MessageJson[currentQuestion-1].answers[0].content}</button>
           </div>  
           <div>
-            <button class="btn-3d blue" onClick={() => handleAnswer(1)}>{MessageJson[currentQuestion].answers[1].content}</button>
+            <button className="btn-3d blue" onClick={() => handleAnswer(1)}>{MessageJson[currentQuestion-1].answers[1].content}</button>
           </div>
-          <h2> 총 {MessageJson.length}가지 질문 중 {bottom_quest_cnt+1} 번째 </h2>
+          <div className="messageCnt">
+            <h2> 총 {MessageJson.length}가지 질문 중 {bottom_quest_cnt+1} 번째 </h2>
+          </div>
         </div>
         
       ) : (
         <div className="result-container">
           {/*여기서 계산하는 함수를 호출하고 완성 페이지를 호출하면된다 */}
-         
+          {console.log("tttttt")}
           { <h2>Your MBTI Type is: {calculateMBTI()}</h2> }
           <p>Thank you for taking the test!  {MessageJson.length }</p>
           {/*페이지 전환시키기  */}
@@ -137,46 +142,45 @@ const MBTIQuiz = () => {
          
         </div>
       )}
+      <div>
+      </div>
   </div>
-  
-  
   );
 
 };
-  
-
 function App() {
-  const navigate = useNavigate();
-  
-  const handleBackToStart = () => {
-    navigate('/');
-  };
+
+  //javascript 영역
+  const setVh= () =>{
+    const vh = window.innerHeight * 0.01; //화면 높이를 가져와서 0.01을 곱하고 이값을 
+    document.documentElement.style.setProperty('--vh',`${vh}px`) // 화면의 스타일중 vh 변수에 적용시킨다 
+  }
+  //화면 페이지가 실행될때 호출되는 자동함수
+  useEffect(()=>{
+    //화면이 실행될때마다 사이즈를 변경하도록 호출
+    setVh();
+
+    //높이가 변경되면 화면 사이즈 조절하도록 호출 
+    function onResize(){
+      setVh();
+    }
+
+    //window 리사이즈 함수 호출 
+    window.addEventListener('resize',onResize);
+
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-      <Router>
-        <Routes>
-          <Route path="/" element={<MBTIQuiz />} />
-          <Route path="/E" element={<E_page />} />
-          <Route path="/I" element={<I_page />} />
-          <Route path="/Default" element={<Default_page />} />
-        </Routes>
-      </Router>
-        {/*여기에 카톡 공유하기 버튼 추가 */}
-        <div class="send_kakao_link">
-        <button class="btn-3d blue" onClick="">카카오공유하기</button>
-        
-        </div>
-         {/*처음으로 돌아가기*/}
-        {
-          <div className="back-to-start-container">
-            <button class="btn-3d red"  onClick={handleBackToStart()}>
-              Back to Start
-            </button>
-          </div>
-        }
-      </header>
-    </div>
+  <div className="App">
+    
+    <Router>
+      <Routes>
+        <Route path="/" element={<MBTIQuiz />} />
+        <Route path="/E" element={<E_page />} />
+        <Route path="/I" element={<I_page />} />
+        <Route path="/Default" element={<Default_page />} />
+      </Routes>
+    </Router>
+  </div>
   );
 }
 

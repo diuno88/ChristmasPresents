@@ -1,0 +1,29 @@
+.result-container {
+  /* 부모 div에 대한 스타일 (원하는 스타일 추가) */
+  width: 100%; /* 부모 div의 가로폭을 100%로 설정하여 화면 가로폭에 가득 차게 함 */
+  height: 100vh; /* 부모 div의 높이를 화면 높이에 가득 차게 함 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden; /* 스크롤을 숨기는 스타일 */
+  background-color: #fff; /* 배경 색을 흰색으로 설정하거나 원하는 색상으로 변경 */
+}
+
+.resultImage img {
+  display: flex;
+  flex-direction: column; /*위에서 아래로 쌓기 위해서 */
+  
+  width: 100%; /* 이미지를 부모 div의 100%로 설정하여 가로폭을 꽉 차게 함 */
+  
+  position: absolute; /* 포지션을 절대적으로 설정하여 부모 div에 대한 기준으로 위치 조절 */
+  top: 0; /* 부모 div의 상단에 위치 */
+  left: 0; /* 부모 div의 왼쪽에 위치 */
+  
+}
+
+.coupangLink{
+  display: flex;
+  justify-content: center; /*가운데정렬 */ 
+  flex-direction: column;
+}

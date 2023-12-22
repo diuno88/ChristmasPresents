@@ -1,35 +1,23 @@
-import React from 'react';
+
+import React  from 'react';
 import resultImage from './resultPageImg/test.png'; // 결과화면
-import './I_page.css'; // Import your custom CSS file for styling
+import './resultPage.css'; // Import your custom CSS file for styling
 
 function I_page() {
+  
   return (
-    <div className="result-container">
+    <div className="result-container" id="holder">
       {/* 큰 이미지 추가 */}
-      
-      <img src={resultImage} alt="resultI" className="result-image" />
-
-
-      {/* 특정 링크 추가 */}
-      <div className="coupang-container">
-        {/* Coupang link */}
-        <a
-          className="coupang-link"
-          href="https://link.coupang.com/a/bkj5MR"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Go to Coupang
-        </a>
-
-        {/* Product image for Coupang link */}
-        <img
-          src="https://imageURLForYourProduct"  // Replace this with the actual URL of your product image
-          alt="CoupangProduct"
-          className="product-image"
-        />
+      <div className='resultImage'>
+        <img src={resultImage} alt="resultI"/>
       </div>
-
+      
+      {/* 특정 링크 추가 */}
+      <div className="coupangLink">
+        {/* Coupang link */}
+        추천선물
+        <a href="https://link.coupang.com/a/bkj5MR"/>
+      </div>
     </div>
   );
 }

@@ -1,14 +1,48 @@
 .App {
   text-align: center;
-  padding: 40px 0;
-  background-color: #A8C0D6;
+  display: flex;
+  justify-content: center; /*가운데정렬 */
+  font-size : 14px;
+  padding: 80px 0;
+  background-image: url("./img/title_background2.png");
+  background-size: 100%;
+  width: 100%; /*카톡느낌이 나도록 100%로 채우게 하는데 최대너비를 지정함*/
+  max-width: 900px;
+  height : calc(var(--vh,1vh)*100);
+}
+.container_title{
+  flex-direction: column; /*위에서 아래로 쌓기 위해서 */
+  align-items: center;
+  justify-content: center; /*가운데정렬 */
+  color: #000000;
+  font-size: 50px;
+  font-weight: 700; /*굵게*/
 }
 
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.quiz-container{
+  display: flex;
+  flex-direction: column; /*위에서 아래로 쌓기 위해서 */
+  align-items: center;
+  justify-content: center; /*가운데정렬 */
+  
+  width: 100%; /*카톡느낌이 나도록 100%로 채우게 하는데 최대너비를 지정함*/
+  max-width: 900px;
+  height: 100%;
+  
 }
+
+.question{
+  display: flex;
+  flex-direction: column; /*위에서 아래로 쌓기 위해서 */
+  align-items: center;
+  justify-content: center; /*가운데정렬 */
+  color: #000000;
+  font-size: 40px;
+  font-weight: 700; /*굵게*/
+  padding: 20px 0;
+}
+
 .fade-in-out {
   opacity: 1;
   transition: opacity 1s ease-in-out;
@@ -18,35 +52,7 @@
   opacity: 0;
   pointer-events: none;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  /* background-color: #282c34; */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-.top {
-  height: 20vh;
-  padding: 2rem;
-}
-.App-link {
-  color: #61dafb;
-}
-.question {
-  color: #c57d7d;
-  font-size: 1.4rem;
-  font-weight: bolder;
-  text-align: center;
-}
 .btn-3d {
   position: relative;
   display: inline-block;
@@ -57,17 +63,14 @@
   border-radius: 6px;
   text-align: center;
   transition: top .01s linear;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 }
-.btn-3d.red:hover    {background-color: #e74c3c;}
-.btn-3d.blue:hover   {background-color: #699DD1;}
+/* .btn-3d.red:hover    {background-color: #e74c3c;}
+.btn-3d.blue:hover   {background-color: #699DD1;} */
 
-.btn-3d:active {
-  top: 9px;
-}
 
 /* 3D button colors */
 .btn-3d.red {
+  
   background-color: #e74c3c;
   box-shadow: 0 0 0 1px #c63702 inset,
         0 0 0 2px rgba(255,255,255,0.15) inset,
@@ -94,14 +97,20 @@
         0 0 0 2px rgba(255,255,255,0.15) inset,
         0 0 0 1px rgba(0,0,0,0.4);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-3d.cyan {
+  background-color: #7fccde;
+  box-shadow: 0 0 0 1px #7fccde inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 rgba(102, 164, 178, .6),
+        0 8px 0 1px rgba(0,0,0,.4),
+        0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.cyan:active {
+  box-shadow: 0 0 0 1px #7fccde inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
 }
 
 
+
+  
